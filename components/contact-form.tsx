@@ -165,7 +165,7 @@ export function ContactForm() {
                     <div>
                       <h3 className="text-lg font-bold mb-1">Correo electrónico</h3>
                       <p className="text-muted-foreground">bokdesserts@outlook.com</p>
-                      <p className="text-sm text-muted-foreground mt-1">Respuesta en 24-48 horas</p>
+                      <p className="text-sm text-muted-foreground mt-1">Respuesta en 12-24 horas</p>
                     </div>
                   </div>
                 </CardContent>
