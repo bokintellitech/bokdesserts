@@ -2,6 +2,28 @@ import { Footer } from "@/components/footer"
 import { PromoCard } from "@/components/promo-card"
 import { Badge } from "@/components/ui/badge"
 import { Sparkles } from "lucide-react"
+import type { Metadata } from "next"
+
+export const metadata: Metadata = {
+  title: "Promociones y Combos Especiales | BokDesserts",
+  description:
+    "Aprovecha nuestros combos especiales de postres y bebidas calientes con descuentos de hasta 21%. Combos para parejas, familias y celebraciones.",
+  keywords: [
+    "promociones postres",
+    "combos pasteles",
+    "ofertas especiales",
+    "descuentos postres",
+    "combos bebidas calientes",
+    "BokDesserts promociones",
+  ],
+  openGraph: {
+    title: "Promociones y Combos Especiales | BokDesserts",
+    description: "Combos especiales de postres premium con descuentos de hasta 21%",
+    type: "website",
+    locale: "es_MX",
+    siteName: "BokDesserts",
+  },
+}
 
 const promociones = [
   {
@@ -105,7 +127,7 @@ export default function Promociones() {
             ))}
           </div>
 
-          <div className="mt-16 bg-gradient-to-r from-primary/10 via-primary/5 to-primary/10 rounded-2xl p-8 text-center">
+          <div className="mt-16 bg-muted rounded-2xl p-8 text-center">
             <h2 className="text-3xl font-bold mb-4">¿Cómo funcionan nuestras promociones?</h2>
             <div className="grid md:grid-cols-3 gap-6 mt-8">
               <div className="bg-background rounded-xl p-6 border-2">
