@@ -33,7 +33,8 @@ export function Header() {
           >
             Bebidas
           </button>
-          <Button size="sm" className="rounded-full">
+          <Button 
+            onClick={() => scrollToSection("contacto")} size="sm" className="rounded-full">
             Contacto
           </Button>
         </nav>
