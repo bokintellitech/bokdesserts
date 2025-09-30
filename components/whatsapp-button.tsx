@@ -24,7 +24,7 @@ export function WhatsAppButton() {
   }, [])
 
   const handleWhatsAppClick = () => {
-    const phoneNumber = "5215512345678" // Reemplazar con el número real de WhatsApp
+    const phoneNumber = "+52 5647339306" // Reemplazar con el número real de WhatsApp
     const message = encodeURIComponent("Hola, deseo ordenar: ")
     const whatsappUrl = `https://wa.me/${phoneNumber}?text=${message}`
     window.open(whatsappUrl, "_blank")
