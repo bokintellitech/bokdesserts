@@ -15,7 +15,7 @@ export function Footer() {
               <span className="text-xl font-bold text-foreground">BokDesserts</span>
             </div>
             <p className="text-sm text-muted-foreground">
-              Los mejores postres premium y bebidas calientes para endulzar tu día.
+              Los mejores postres y bebidas calientes para endulzar tu día.
             </p>
           </div>
 
@@ -69,11 +69,11 @@ export function Footer() {
             <ul className="space-y-3 text-sm text-muted-foreground">
               <li className="flex items-center gap-2">
                 <Mail className="h-4 w-4" />
-                <span>info@bokdesserts.com</span>
+                <span>bokdesserts@outlook.com</span>
               </li>
               <li className="flex items-center gap-2">
                 <Phone className="h-4 w-4" />
-                <span>+52 55 1234 5678</span>
+                <span>+52 564733-9306</span>
               </li>
               <li className="flex items-center gap-2">
                 <MapPin className="h-4 w-4" />
