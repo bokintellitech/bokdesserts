@@ -1,6 +1,17 @@
 import { Footer } from "@/components/footer"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Shield, FileText, AlertCircle, CheckCircle } from "lucide-react"
+import type { Metadata } from "next"
+
+export const metadata: Metadata = {
+  title: "Términos y Condiciones | BokDesserts",
+  description:
+    "Lee nuestros términos y condiciones de servicio. Políticas de pedidos, entregas, cancelaciones y privacidad de datos.",
+  robots: {
+    index: true,
+    follow: true,
+  },
+}
 
 export default function Terminos() {
   return (
