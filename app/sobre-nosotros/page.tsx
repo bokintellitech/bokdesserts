@@ -1,6 +1,21 @@
 import { Footer } from "@/components/footer"
 import { Card, CardContent } from "@/components/ui/card"
 import { Heart, Users, Award, Sparkles } from "lucide-react"
+import type { Metadata } from "next"
+
+export const metadata: Metadata = {
+  title: "Sobre Nosotros - Nuestra Historia | BokDesserts",
+  description:
+    "Conoce la historia de BokDesserts. Endulzando momentos especiales con los mejores postres y bebidas calientes. Calidad premium y atención personalizada.",
+  keywords: ["sobre BokDesserts", "historia BokDesserts", "empresa postres México", "misión visión", "calidad premium"],
+  openGraph: {
+    title: "Sobre Nosotros - Nuestra Historia | BokDesserts",
+    description: "Endulzando momentos especiales desde el corazón",
+    type: "website",
+    locale: "es_MX",
+    siteName: "BokDesserts",
+  },
+}
 
 export default function SobreNosotros() {
   return (
@@ -97,7 +112,7 @@ export default function SobreNosotros() {
             </Card>
           </div>
 
-          <div className="bg-primary/5 rounded-2xl p-8 text-center">
+          <div className="bg-muted rounded-2xl p-8 text-center">
             <h2 className="text-3xl font-bold mb-4">¿Por qué elegirnos?</h2>
             <p className="text-lg text-muted-foreground leading-relaxed max-w-2xl mx-auto">
               En BokDesserts no solo vendemos postres, creamos experiencias. Nuestra selección cuidadosa de productos,
