@@ -10,9 +10,8 @@ import { WhatsAppButton } from "@/components/whatsapp-button"
 import "./globals.css"
 
 export const metadata: Metadata = {
-  title: "BokDesserts - Postres y Bebidas Premium",
+  title: "BokDesserts - Postres y Bebidas",
   description: "Los mejores postres de Costco, Sam's Club, La Esperanza, El Globo y más",
-  generator: "v0.app",
 }
 
 export default function RootLayout({
