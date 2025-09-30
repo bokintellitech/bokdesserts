@@ -194,7 +194,7 @@ export function ContactForm() {
                     </div>
                     <div>
                       <h3 className="text-lg font-bold mb-1">Entregas</h3>
-                      <p className="text-muted-foreground">Ciudad de México y área metropolitana</p>
+                      <p className="text-muted-foreground">Ecatepec, Estado de Mèxico</p>
                       <p className="text-sm text-muted-foreground mt-1">Consulta disponibilidad en tu zona</p>
                     </div>
                   </div>
