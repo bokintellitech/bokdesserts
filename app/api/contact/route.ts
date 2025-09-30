@@ -1,47 +1,27 @@
-import { NextResponse } from "next/server"
+import { Resend } from 'resend';
+
+const resend = new Resend(process.env.RESEND_API_KEY);
 
 export async function POST(request: Request) {
+  const { name, email, phone, message } = await request.json();
+  
   try {
-    const body = await request.json()
-    const { nombre, email, telefono, mensaje } = body
-
-    // Validar datos
-    if (!nombre || !email || !telefono || !mensaje) {
-      return NextResponse.json({ error: "Todos los campos son requeridos" }, { status: 400 })
-    }
-
-    // Crear el contenido del email
-    const emailContent = `
-      Nueva consulta de contacto - BokDesserts
-      
-      Nombre: ${nombre}
-      Email: ${email}
-      Teléfono: ${telefono}
-      
-      Mensaje:
-      ${mensaje}
-      
-      ---
-      Este mensaje fue enviado desde el formulario de contacto de BokDesserts
-    `
-
-    // En producción, aquí integrarías con un servicio de email como Resend, SendGrid, etc.
-    // Por ahora, simulamos el envío exitoso
-    console.log("[v0] Email a enviar:", emailContent)
-    console.log("[v0] Destinatario: bokdesserts@outlook.com")
-
-    // Simular delay de envío
-    await new Promise((resolve) => setTimeout(resolve, 1000))
-
-    return NextResponse.json(
-      {
-        success: true,
-        message: "Mensaje enviado correctamente",
-      },
-      { status: 200 },
-    )
+    await resend.emails.send({
+      from: 'BokDesserts <onboarding@resend.dev>',
+      to: 'bokdesserts@outlook.com',
+      subject: `Nuevo mensaje de ${name}`,
+      html: `
+        <h2>Nuevo mensaje de contacto</h2>
+        <p><strong>Nombre:</strong> ${name}</p>
+        <p><strong>Email:</strong> ${email}</p>
+        <p><strong>Teléfono:</strong> ${phone}</p>
+        <p><strong>Mensaje:</strong></p>
+        <p>${message}</p>
+      `
+    });
+    
+    return Response.json({ success: true });
   } catch (error) {
-    console.error("[v0] Error al procesar contacto:", error)
-    return NextResponse.json({ error: "Error al procesar la solicitud" }, { status: 500 })
+    return Response.json({ error: 'Error al enviar' }, { status: 500 });
   }
 }
