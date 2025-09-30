@@ -13,43 +13,39 @@ export async function POST(request: Request) {
       return NextResponse.json({ error: "Todos los campos son requeridos" }, { status: 400 })
     }
 
-    try {
-      const { data, error } = await resend.emails.send({
-        from: "BokDesserts <onboarding@resend.dev>", // Cambiar por tu dominio verificado
-        to: ["bokdesserts@outlook.com"],
-        subject: `Nueva consulta de ${nombre}`,
-        html: `
-          <h2>Nueva consulta de contacto - BokDesserts</h2>
-          <p><strong>Nombre:</strong> ${nombre}</p>
-          <p><strong>Email:</strong> ${email}</p>
-          <p><strong>Teléfono:</strong> ${telefono}</p>
-          <br>
-          <p><strong>Mensaje:</strong></p>
-          <p>${mensaje}</p>
-          <br>
-          <hr>
-          <p style="color: #666; font-size: 12px;">Este mensaje fue enviado desde el formulario de contacto de BokDesserts</p>
-        `,
-      })
+    const { data, error } = await resend.emails.send({
+      from: "BokDesserts <onboarding@resend.dev>",
+      to: ["bokdesserts@outlook.com"],
+      subject: `Nueva consulta de contacto - ${nombre}`,
+      text: `
+Nueva consulta de contacto - BokDesserts
 
-      if (error) {
-        console.error("[v0] Error al enviar email con Resend:", error)
-        return NextResponse.json({ error: "Error al enviar el mensaje" }, { status: 500 })
-      }
+Nombre: ${nombre}
+Email: ${email}
+Teléfono: ${telefono}
 
-      console.log("[v0] Email enviado exitosamente:", data)
+Mensaje:
+${mensaje}
 
-      return NextResponse.json(
-        {
-          success: true,
-          message: "Mensaje enviado correctamente",
-        },
-        { status: 200 },
-      )
-    } catch (emailError) {
-      console.error("[v0] Error al enviar email:", emailError)
+---
+Este mensaje fue enviado desde el formulario de contacto de BokDesserts
+      `,
+    })
+
+    if (error) {
+      console.error("[v0] Error al enviar email:", error)
       return NextResponse.json({ error: "Error al enviar el mensaje" }, { status: 500 })
     }
+
+    console.log("[v0] Email enviado exitosamente:", data)
+
+    return NextResponse.json(
+      {
+        success: true,
+        message: "Mensaje enviado correctamente",
+      },
+      { status: 200 },
+    )
   } catch (error) {
     console.error("[v0] Error al procesar contacto:", error)
     return NextResponse.json({ error: "Error al procesar la solicitud" }, { status: 500 })
