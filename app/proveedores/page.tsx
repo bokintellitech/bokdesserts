@@ -2,6 +2,29 @@ import { Footer } from "@/components/footer"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
 import { Store, Award, Clock, MapPin } from "lucide-react"
+import type { Metadata } from "next"
+
+export const metadata: Metadata = {
+  title: "Nuestros Proveedores Premium | BokDesserts",
+  description:
+    "Trabajamos con las mejores marcas: Costco, Sam's Club, La Esperanza, El Globo y El Horno. Productos de la más alta calidad y sabor excepcional.",
+  keywords: [
+    "proveedores postres",
+    "Costco pasteles",
+    "Sam's Club",
+    "La Esperanza",
+    "El Globo",
+    "El Horno",
+    "pastelerías México",
+  ],
+  openGraph: {
+    title: "Nuestros Proveedores Premium | BokDesserts",
+    description: "Trabajamos con las mejores marcas y pastelerías de México",
+    type: "website",
+    locale: "es_MX",
+    siteName: "BokDesserts",
+  },
+}
 
 const proveedores = [
   {
