@@ -1,8 +1,8 @@
-
 "use client"
 
-import { useState } from "react"
+import { useState, useMemo } from "react"
 import { ProductCard } from "@/components/product-card"
+import { ProductSearch } from "@/components/product-search"
 import { Button } from "@/components/ui/button"
 import { Cake, Coffee } from "lucide-react"
 
@@ -11,7 +11,7 @@ const postres = [
     id: 1,
     name: "Pastel de Chocolate Costco",
     provider: "Costco",
-    price: 299,
+    price: 60,
     image: "/decadent-chocolate-cake.png",
     category: "postres",
   },
@@ -19,7 +19,7 @@ const postres = [
     id: 2,
     name: "Cheesecake Sam's Club",
     provider: "Sam's Club",
-    price: 249,
+    price: 55,
     image: "/classic-cheesecake.png",
     category: "postres",
   },
@@ -27,7 +27,7 @@ const postres = [
     id: 3,
     name: "Tres Leches La Esperanza",
     provider: "La Esperanza",
-    price: 189,
+    price: 65,
     image: "/tres-leches-cake.jpg",
     category: "postres",
   },
@@ -35,7 +35,7 @@ const postres = [
     id: 4,
     name: "Pastel de Fresa El Globo",
     provider: "El Globo",
-    price: 219,
+    price: 70,
     image: "/strawberry-cake.png",
     category: "postres",
   },
@@ -43,7 +43,7 @@ const postres = [
     id: 5,
     name: "Tiramisu Costco",
     provider: "Costco",
-    price: 279,
+    price: 80,
     image: "/classic-tiramisu.png",
     category: "postres",
   },
@@ -51,7 +51,7 @@ const postres = [
     id: 6,
     name: "Red Velvet Sam's Club",
     provider: "Sam's Club",
-    price: 259,
+    price: 65,
     image: "/red-velvet-cake.png",
     category: "postres",
   },
@@ -62,7 +62,7 @@ const bebidas = [
     id: 7,
     name: "Café Americano",
     provider: "BokDesserts",
-    price: 45,
+    price: 40,
     image: "/americano-coffee.png",
     category: "bebidas",
   },
@@ -102,7 +102,7 @@ const bebidas = [
     id: 12,
     name: "Té Chai",
     provider: "BokDesserts",
-    price: 48,
+    price: 50,
     image: "/spiced-chai.png",
     category: "bebidas",
   },
@@ -110,9 +110,41 @@ const bebidas = [
 
 export function ProductGrid() {
   const [activeCategory, setActiveCategory] = useState<"all" | "postres" | "bebidas">("all")
+  const [searchQuery, setSearchQuery] = useState("")
+  const [sortBy, setSortBy] = useState("default")
+  const [priceRange, setPriceRange] = useState("all")
 
-  const filteredProducts =
-    activeCategory === "all" ? [...postres, ...bebidas] : activeCategory === "postres" ? postres : bebidas
+  const filteredProducts = useMemo(() => {
+    let products =
+      activeCategory === "all" ? [...postres, ...bebidas] : activeCategory === "postres" ? postres : bebidas
+
+    if (searchQuery) {
+      products = products.filter(
+        (product) =>
+          product.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
+          product.provider.toLowerCase().includes(searchQuery.toLowerCase()),
+      )
+    }
+
+    if (priceRange !== "all") {
+      const [min, max] = priceRange.split("-").map((v) => (v === "+" ? Number.POSITIVE_INFINITY : Number.parseInt(v)))
+      products = products.filter((product) => product.price >= min && (max ? product.price <= max : true))
+    }
+
+    switch (sortBy) {
+      case "price-asc":
+        products.sort((a, b) => a.price - b.price)
+        break
+      case "price-desc":
+        products.sort((a, b) => b.price - a.price)
+        break
+      case "name":
+        products.sort((a, b) => a.name.localeCompare(b.name))
+        break
+    }
+
+    return products
+  }, [activeCategory, searchQuery, sortBy, priceRange])
 
   return (
     <section className="py-16 md:py-24">
@@ -151,23 +183,52 @@ export function ProductGrid() {
           </div>
         </div>
 
-        {/* Postres Section */}
-        <div id="postres" className="mb-16">
-          <h3 className="mb-8 text-3xl font-bold text-foreground">Postres Premium</h3>
-          <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
-            {(activeCategory === "all" || activeCategory === "postres") &&
-              postres.map((product) => <ProductCard key={product.id} product={product} />)}
-          </div>
-        </div>
+        {/* Search and Filter Component */}
+        <ProductSearch
+          searchQuery={searchQuery}
+          onSearchChange={setSearchQuery}
+          sortBy={sortBy}
+          onSortChange={setSortBy}
+          priceRange={priceRange}
+          onPriceRangeChange={setPriceRange}
+        />
 
-        {/* Bebidas Section */}
-        <div id="bebidas">
-          <h3 className="mb-8 text-3xl font-bold text-foreground">Bebidas Calientes</h3>
-          <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
-            {(activeCategory === "all" || activeCategory === "bebidas") &&
-              bebidas.map((product) => <ProductCard key={product.id} product={product} />)}
+        {/* Filtered Products with Empty State */}
+        {filteredProducts.length === 0 ? (
+          <div className="py-16 text-center">
+            <p className="text-lg text-muted-foreground">No se encontraron productos</p>
           </div>
-        </div>
+        ) : (
+          <>
+            {/* Postres Section */}
+            {(activeCategory === "all" || activeCategory === "postres") && (
+              <div id="postres" className="mb-16">
+                <h3 className="mb-8 text-3xl font-bold text-foreground">Postres Premium</h3>
+                <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
+                  {filteredProducts
+                    .filter((p) => p.category === "postres")
+                    .map((product) => (
+                      <ProductCard key={product.id} product={product} />
+                    ))}
+                </div>
+              </div>
+            )}
+
+            {/* Bebidas Section */}
+            {(activeCategory === "all" || activeCategory === "bebidas") && (
+              <div id="bebidas">
+                <h3 className="mb-8 text-3xl font-bold text-foreground">Bebidas Calientes</h3>
+                <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
+                  {filteredProducts
+                    .filter((p) => p.category === "bebidas")
+                    .map((product) => (
+                      <ProductCard key={product.id} product={product} />
+                    ))}
+                </div>
+              </div>
+            )}
+          </>
+        )}
       </div>
     </section>
   )
