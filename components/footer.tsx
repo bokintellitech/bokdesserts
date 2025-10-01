@@ -1,5 +1,5 @@
-
 import { Cake, Mail, Phone, MapPin } from "lucide-react"
+import Link from "next/link"
 
 export function Footer() {
   return (
@@ -10,21 +10,12 @@ export function Footer() {
           <div className="space-y-4">
             <div className="flex items-center gap-2">
               <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-primary">
-                 <Link href="/" className="flex items-center gap-2">
-                    <Image 
-                      src="/logo.png" 
-                      alt="BokDesserts Logo" 
-                      width={40} 
-                      height={40}
-                      className="rounded-xl"
-                    />
-                      <span className="text-2xl font-bold text-foreground">BokDesserts</span>
-                </Link>
+                <Cake className="h-6 w-6 text-primary-foreground" />
               </div>
               <span className="text-xl font-bold text-foreground">BokDesserts</span>
             </div>
             <p className="text-sm text-muted-foreground">
-              Los mejores postres y bebidas calientes para endulzar tu día.
+              Los mejores postres premium y bebidas calientes para endulzar tu día.
             </p>
           </div>
 
@@ -33,19 +24,19 @@ export function Footer() {
             <h3 className="mb-4 font-semibold text-foreground">Productos</h3>
             <ul className="space-y-2 text-sm text-muted-foreground">
               <li>
-                <a href="#postres" className="hover:text-foreground transition-colors">
+                <Link href="/#postres" className="hover:text-foreground transition-colors">
                   Postres
-                </a>
+                </Link>
               </li>
               <li>
-                <a href="#bebidas" className="hover:text-foreground transition-colors">
+                <Link href="/#bebidas" className="hover:text-foreground transition-colors">
                   Bebidas Calientes
-                </a>
+                </Link>
               </li>
               <li>
-                <a href="#" className="hover:text-foreground transition-colors">
+                <Link href="/promociones" className="hover:text-foreground transition-colors">
                   Promociones
-                </a>
+                </Link>
               </li>
             </ul>
           </div>
@@ -55,19 +46,19 @@ export function Footer() {
             <h3 className="mb-4 font-semibold text-foreground">Empresa</h3>
             <ul className="space-y-2 text-sm text-muted-foreground">
               <li>
-                <a href="#" className="hover:text-foreground transition-colors">
+                <Link href="/sobre-nosotros" className="hover:text-foreground transition-colors">
                   Sobre Nosotros
-                </a>
+                </Link>
               </li>
               <li>
-                <a href="#" className="hover:text-foreground transition-colors">
+                <Link href="/proveedores" className="hover:text-foreground transition-colors">
                   Proveedores
-                </a>
+                </Link>
               </li>
               <li>
-                <a href="#" className="hover:text-foreground transition-colors">
+                <Link href="/terminos" className="hover:text-foreground transition-colors">
                   Términos y Condiciones
-                </a>
+                </Link>
               </li>
             </ul>
           </div>
@@ -82,18 +73,18 @@ export function Footer() {
               </li>
               <li className="flex items-center gap-2">
                 <Phone className="h-4 w-4" />
-                <span>+52 564733-9306</span>
+                <span>+52 55 1234 5678</span>
               </li>
               <li className="flex items-center gap-2">
                 <MapPin className="h-4 w-4" />
-                <span>Ciudad de México</span>
+                <span>Ecatepec, Mèxico</span>
               </li>
             </ul>
           </div>
         </div>
 
         <div className="mt-12 border-t border-border pt-8 text-center text-sm text-muted-foreground">
-          <p>© 2025 BokDesserts. Todos los derechos reservados.</p>
+          <p>© 2025 BokDesserts. Todos los derechos reservados. PoweredBy @gangasrotogati</p>
         </div>
       </div>
     </footer>
