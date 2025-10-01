@@ -24,8 +24,7 @@ export function Header() {
       <div className="container mx-auto flex h-16 items-center justify-between px-4">
         <Link href="/" className="flex items-center gap-2">
           <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-primary">
-
-            <Link href="/" className="flex items-center gap-2">
+              <Link href="/" className="flex items-center gap-2">
                  <Image 
                   src="/logo.png" 
                   alt="BokDesserts Logo" 
@@ -33,9 +32,7 @@ export function Header() {
                   height={40}
                   className="rounded-xl"
                 />
-            </Link>
-
-            
+              </Link>
           </div>
           <span className="text-2xl font-bold text-foreground">BokDesserts</span>
         </Link>
@@ -107,11 +104,8 @@ export function Header() {
 
           <CartSheet />
 
-          <Link href="/contacto">
-            <Button 
-                onClick={() => scrollToSection("postres")}
-                size="sm" className="rounded-full"
-              >
+          <Link href="/#contacto">
+            <Button size="sm" className="rounded-full">
               Contacto
             </Button>
           </Link>
@@ -174,10 +168,8 @@ export function Header() {
                 >
                   Sobre Nosotros
                 </Link>
-                <Link href="/contacto">
-                  <Button 
-                    
-                    className="w-full rounded-full mt-4">Contacto</Button>
+                <Link href="/#contacto">
+                  <Button className="w-full rounded-full mt-4">Contacto</Button>
                 </Link>
               </nav>
             </SheetContent>
