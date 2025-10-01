@@ -10,7 +10,7 @@ import { WhatsAppButton } from "@/components/whatsapp-button"
 import "./globals.css"
 
 export const metadata: Metadata = {
-  metadataBase: new URL("bokdesserts.vercel.app"), // Actual domain
+  metadataBase: new URL("https://bokdesserts.com"), // Actual domain
   title: {
     default: "BokDesserts - Postres y Bebidas Premium",
     template: "%s | BokDesserts",
