@@ -24,15 +24,7 @@ export function Header() {
       <div className="container mx-auto flex h-16 items-center justify-between px-4">
         <Link href="/" className="flex items-center gap-2">
           <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-primary">
-              <Link href="/" className="flex items-center gap-2">
-                 <Image 
-                  src="/bok_logo.png" 
-                  alt="BokDesserts Logo" 
-                  width={40} 
-                  height={40}
-                  className="rounded-xl"
-                />
-              </Link>
+          
           </div>
           <span className="text-2xl font-bold text-foreground">BokDesserts</span>
         </Link>
@@ -71,24 +63,6 @@ export function Header() {
             }`}
           >
             Promociones
-          </Link>
-
-          <Link
-            href="/proveedores"
-            className={`text-sm font-medium transition-colors ${
-              pathname === "/proveedores" ? "text-foreground" : "text-foreground/80 hover:text-foreground"
-            }`}
-          >
-            Proveedores
-          </Link>
-
-          <Link
-            href="/sobre-nosotros"
-            className={`text-sm font-medium transition-colors ${
-              pathname === "/sobre-nosotros" ? "text-foreground" : "text-foreground/80 hover:text-foreground"
-            }`}
-          >
-            Sobre Nosotros
           </Link>
 
           <Link href="/favoritos">
@@ -166,7 +140,7 @@ export function Header() {
                     pathname === "/sobre-nosotros" ? "text-foreground" : "text-foreground/80"
                   }`}
                 >
-                  Sobre Nosotros
+                  Nosotros
                 </Link>
                 <Link href="/#contacto">
                   <Button className="w-full rounded-full mt-4">Contacto</Button>
