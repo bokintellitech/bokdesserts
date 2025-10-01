@@ -77,7 +77,7 @@ export default function RootLayout({
               name: "BokDesserts",
               description: "Los mejores postres y bebidas premium con envío gratis en México",
               url: "https://bokdesserts.com",
-              telephone: "+52-XXX-XXX-XXXX",
+              telephone: "+52 5647339306",
               email: "bokdesserts@outlook.com",
               address: {
                 "@type": "PostalAddress",
