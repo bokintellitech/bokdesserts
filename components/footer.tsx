@@ -10,16 +10,6 @@ export function Footer() {
           <div className="space-y-4">
             <div className="flex items-center gap-2">
               <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-primary">
-                  <Link href="/" className="flex items-center gap-2">
-                        <Image 
-                          src="/logo.png" 
-                          alt="BokDesserts Logo" 
-                          width={40} 
-                          height={40}
-                          className="rounded-xl"
-                        />
-                        <span className="text-2xl font-bold text-foreground">BokDesserts</span>
-                  </Link> 
                               
               </div>
               <span className="text-xl font-bold text-foreground">BokDesserts</span>
