@@ -17,17 +17,27 @@ export interface CartItem extends Product {
 
 export function useCart() {
   const [cart, setCart] = useState<CartItem[]>([])
+  const [isLoaded, setIsLoaded] = useState(false)
 
   useEffect(() => {
-    const stored = localStorage.getItem("bokdesserts-cart")
-    if (stored) {
-      setCart(JSON.parse(stored))
+    if (typeof window !== "undefined") {
+      const stored = localStorage.getItem("bokdesserts-cart")
+      if (stored) {
+        try {
+          setCart(JSON.parse(stored))
+        } catch (error) {
+          console.error("Error parsing cart:", error)
+        }
+      }
+      setIsLoaded(true)
     }
   }, [])
 
   const saveCart = (newCart: CartItem[]) => {
     setCart(newCart)
-    localStorage.setItem("bokdesserts-cart", JSON.stringify(newCart))
+    if (typeof window !== "undefined") {
+      localStorage.setItem("bokdesserts-cart", JSON.stringify(newCart))
+    }
   }
 
   const addToCart = (product: Product) => {
@@ -77,5 +87,6 @@ export function useCart() {
     clearCart,
     getTotal,
     getItemCount,
+    isLoaded,
   }
 }
