@@ -75,7 +75,7 @@ export default function RootLayout({
               "@context": "https://schema.org",
               "@type": "LocalBusiness",
               name: "BokDesserts",
-              description: "Los mejores postres y bebidas premium con envío gratis en México",
+              description: "Los mejores postres y bebidas premium en México",
               url: "https://bokdesserts.com",
               telephone: "+52 5647339306",
               email: "bokdesserts@outlook.com",
