@@ -13,24 +13,36 @@ export interface Product {
 
 export function useFavorites() {
   const [favorites, setFavorites] = useState<Product[]>([])
+  const [isLoaded, setIsLoaded] = useState(false)
 
   useEffect(() => {
-    const stored = localStorage.getItem("bokdesserts-favorites")
-    if (stored) {
-      setFavorites(JSON.parse(stored))
+    if (typeof window !== "undefined") {
+      const stored = localStorage.getItem("bokdesserts-favorites")
+      if (stored) {
+        try {
+          setFavorites(JSON.parse(stored))
+        } catch (error) {
+          console.error("Error parsing favorites:", error)
+        }
+      }
+      setIsLoaded(true)
     }
   }, [])
 
   const addFavorite = (product: Product) => {
     const newFavorites = [...favorites, product]
     setFavorites(newFavorites)
-    localStorage.setItem("bokdesserts-favorites", JSON.stringify(newFavorites))
+    if (typeof window !== "undefined") {
+      localStorage.setItem("bokdesserts-favorites", JSON.stringify(newFavorites))
+    }
   }
 
   const removeFavorite = (productId: number) => {
     const newFavorites = favorites.filter((item) => item.id !== productId)
     setFavorites(newFavorites)
-    localStorage.setItem("bokdesserts-favorites", JSON.stringify(newFavorites))
+    if (typeof window !== "undefined") {
+      localStorage.setItem("bokdesserts-favorites", JSON.stringify(newFavorites))
+    }
   }
 
   const isFavorite = (productId: number) => {
@@ -51,5 +63,6 @@ export function useFavorites() {
     removeFavorite,
     isFavorite,
     toggleFavorite,
+    isLoaded,
   }
 }
