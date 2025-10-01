@@ -7,7 +7,7 @@ import { Toaster } from "@/components/ui/toaster"
 import { Header } from "@/components/header"
 import { WhatsAppButton } from "@/components/whatsapp-button"
 import "./globals.css"
-import { Suspense } from "react"
+
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://bokdesserts.com"), // Replace with your actual domain
@@ -93,7 +93,7 @@ export default function RootLayout({
             }),
           }}
         />
-        <Suspense fallback={<div>Loading...</div>}>  </Suspense>
+        
           <Header />
           {children}
           <WhatsAppButton />
