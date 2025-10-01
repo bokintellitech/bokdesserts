@@ -4,13 +4,13 @@ import { GeistSans } from "geist/font/sans"
 import { GeistMono } from "geist/font/mono"
 import { Analytics } from "@vercel/analytics/next"
 import { Toaster } from "@/components/ui/toaster"
-import { Suspense } from "react"
 import { Header } from "@/components/header"
 import { WhatsAppButton } from "@/components/whatsapp-button"
 import "./globals.css"
+import { Suspense } from "react"
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://bokdesserts.com"), // Actual domain
+  metadataBase: new URL("https://bokdesserts.com"), // Replace with your actual domain
   title: {
     default: "BokDesserts - Postres y Bebidas Premium",
     template: "%s | BokDesserts",
@@ -39,12 +39,12 @@ export const metadata: Metadata = {
     locale: "es_MX",
     siteName: "BokDesserts",
     title: "BokDesserts - Postres y Bebidas Premium",
-    description: "Los mejores postres premium",
+    description: "Los mejores postres premium con envío gratis en México",
   },
   twitter: {
     card: "summary_large_image",
     title: "BokDesserts - Postres Premium",
-    description: "Los mejores postres premium",
+    description: "Los mejores postres premium con envío gratis",
   },
   robots: {
     index: true,
@@ -57,7 +57,7 @@ export const metadata: Metadata = {
       "max-snippet": -1,
     },
   },
-  generator: "@gangasrotogati",
+  generator: "v0.app",
 }
 
 export default function RootLayout({
@@ -75,9 +75,9 @@ export default function RootLayout({
               "@context": "https://schema.org",
               "@type": "LocalBusiness",
               name: "BokDesserts",
-              description: "Los mejores postres y bebidas premium",
-              url: "bokdesserts.vercel.app",
-              telephone: "+52 564733-9306",
+              description: "Los mejores postres y bebidas premium con envío gratis en México",
+              url: "https://bokdesserts.com",
+              telephone: "+52-XXX-XXX-XXXX",
               email: "bokdesserts@outlook.com",
               address: {
                 "@type": "PostalAddress",
@@ -93,7 +93,7 @@ export default function RootLayout({
             }),
           }}
         />
-        <Suspense fallback={null}>
+        <Suspense fallback={<div>Loading...</div>}>
           <Header />
           {children}
           <WhatsAppButton />
