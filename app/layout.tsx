@@ -93,12 +93,12 @@ export default function RootLayout({
             }),
           }}
         />
-        <Suspense fallback={<div>Loading...</div>}>
+        <Suspense fallback={<div>Loading...</div>}>  </Suspense>
           <Header />
           {children}
           <WhatsAppButton />
           <Toaster />
-        </Suspense>
+       
         <Analytics />
       </body>
     </html>
